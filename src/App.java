@@ -1,4 +1,5 @@
 
+import controllers.Ejercicios;
 import controllers.EmpleadoContoller;
 import controllers.Mapa;
 import models.Empleado;
@@ -11,10 +12,12 @@ public class App {
         //runMapExamlpe();
 
         // Ejecuta el ejemplo de gestión de empleados usando HashMap
-        runEmpleadoExample();
+        //runEmpleadoExample();
 
         // Ejecuta los ejercicios de sumatoria y anagramas
         //runEjerccios();
+
+        runEjerccios();
     }
 
     private static void runEmpleadoExample() {
@@ -32,7 +35,22 @@ public class App {
     }
 
     private static void runEjerccios() {
-        throw new UnsupportedOperationException("Not implemented yet");
-
+        System.out.println(" EJERCICIO ANGRAMAS -------");
+        System.out.println("Ingresa las dos cadenas");
+        Ejercicios ejecutar = new Ejercicios();
+        System.out.println(ejecutar.areAnagrams("",""));
+        System.out.println(" EJERCICIO SUMA DE NUMEROS-------");
+        int[] numeros = {1, 4, 3, 6};
+        int[] result = ejecutar.sumatoriaDeDos(numeros,0);
+        if (result == null) {
+            System.out.println("No hay nada ");
+        }else{
+            System.out.println(" La suma de estos numeros da el objetivo ");
+            for (int a : result) {
+                System.out.print(a);
+            }
+        }
+        
     }
+    
 }

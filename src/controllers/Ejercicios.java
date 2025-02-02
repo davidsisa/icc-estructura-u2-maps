@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Ejercicios {
 
@@ -28,7 +29,38 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Scanner leer = new Scanner(System.in);
+        System.out.println("STR1:");
+        str1 = leer.next();
+        System.out.println("STR2:");
+        str2 = leer.next();
+        HashMap<Character, Integer> map = new HashMap<>();
+        char[] cadena1 = str1.toCharArray();
+        HashMap<Character, Integer> map2 = new HashMap<>();
+        char[] cadena2 = str2.toCharArray();
+        //Hacer la comparacion primera donde se verifica que los string tengan diferentes tamaños, si es asi retorna falso
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+        //Añadir los caracteres en los mapas, para verificar si el caracter ya existe con constainsKey.
+        //Si lo tiene añade al valor un +1,sino, lo deja en 1. Esto es para facilitar el uso del metodo de comparacion
+        //equals que compara los valores y no las claves.
+        for(char a: cadena1){
+            if (map.containsKey(a)) {
+                map.put(a, map.get(a) + 1);
+            } else {
+                map.put(a, 1);
+            }
+        }
+        for(char a: cadena2){
+            if (map2.containsKey(a)) {
+                map2.put(a, map2.get(a) + 1);
+            } else {
+                
+                map2.put(a, 1);
+            }
+        }
+        return map.equals(map2);
 
     }
 
@@ -48,6 +80,26 @@ public class Ejercicios {
      * Output: null
      */
     public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        System.out.println("Ingresa el objetivo: ");
+        Scanner leer = new Scanner(System.in);
+        objetivo = leer.nextInt();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        //Digamos que el objetivo es 5, y los primeros numeros son 1 y 4.
+        
+        for (int i = 0; i < nums.length; i++) {
+            // vuelta 1: complemento = 4
+            // vuelta 2: complemento = 1
+            int comprobador = objetivo - nums[i];
+            // vuelta 1 : No entra
+            // vuelta 2 : Entra porque revisa que la clave se encuentra agregada
+            if (map.containsKey(comprobador)) {
+                // VUELTA FINAL : crea un array de tamaño segun el hash map que tenemos
+                return new int[] { map.get(comprobador), i };
+            }
+            // vuelta 1 : Se agrega al HashMap el 1
+            map.put(nums[i], i);
+        } 
+        //SI NO AY CONINCIDENCIAS
+        return null;
     }
 }
